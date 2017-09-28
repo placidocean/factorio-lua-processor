@@ -34,12 +34,11 @@ local controller = {}
 
 controller["lua-processor-cpu"] = {
 	-------------------------------------------------------------------------------------------------------------------
-	on_built = function(entity, player)
+	on_built = function(entity)
 		if global.objects == nil then global.objects = {} end
 		local object = {
 			tag = 1,
 			entity = entity,
-			player = player,
 			program_id = nil, -- nil  "storage-controller"  "lua-executor"
 			program_data = {},
 			io = bios:new(entity.get_or_create_control_behavior()),
@@ -143,12 +142,11 @@ controller["lua-processor-cpu"] = {
 
 local controller_shared = {
 	-------------------------------------------------------------------------------------------------------------------
-	on_built = function(entity, player)
+	on_built = function(entity)
 		if global.objects == nil then global.objects = {} end
 		local object = {
 			tag = 1,
 			entity = entity,
-			player = player,
 			io = bios:new(entity.get_or_create_control_behavior()),
 		}
 		global.objects[get_eid(entity)] = object
@@ -195,7 +193,7 @@ controller["lua-processor-ram"] = controller_shared
 local function on_built(event)
 	local entity = event.created_entity
 	if controller[entity.name] ~= nil and controller[entity.name].on_built then
-		controller[entity.name].on_built(entity, game.players[event.player_index])
+		controller[entity.name].on_built(entity)
 	end
 end
 
