@@ -15,6 +15,14 @@ local object_tag_source = {}; for i = 1, 100 do object_tag_source[i] = i end -- 
 local function initialize(reset)
 	if reset then
 		global = {}
+		for _, force in pairs(game.forces) do
+			if force.technologies["circuit-network"].researched then
+				force.recipes["lua-processor-cpu"].enabled = true
+				force.recipes["lua-processor-io"].enabled = true
+				force.recipes["lua-processor-ram"].enabled = true
+				shout(string.format("lua-processor: enabled for force %s", force.name))
+			end
+		end
 	end
 	global.objects  = global.objects  or {}
 	global.opened  = global.opened  or {}
