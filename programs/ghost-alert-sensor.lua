@@ -47,4 +47,6 @@ root[name] = {
 
 		object.io:outs(outs)
 	end,
+	description = [[Reads alerts for items requests and outputs to circuit
+	network. Handy to automate supply items for blueprint building.]],
 }
