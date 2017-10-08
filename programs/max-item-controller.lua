@@ -50,4 +50,6 @@ root[name] = {
 		end
 		object.io:outs(outs)
 	end,
+	description = [[Outputs to CPU's port maximum item signal that found
+	in circuit attached to IO port]],
 }
