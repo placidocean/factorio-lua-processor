@@ -95,6 +95,13 @@ controller["lua-processor-cpu"] = {
 		gui_or_new(program_panel, "program-label", {type = "label", name = "program-label", caption = {"msg-program-id", ""} })
 		gui_or_new(program_panel, "program-selector", {type = "drop-down", name = "program-selector", items = programs_id, selected_index = selected_index })
 		gui_or_new(program_panel, "program-load", {type = "button", name = "program-load", caption = {"msg-button-load"}, style = "button_style_1"}) 
+
+		description_panel = gui_or_new(panel, "description-panel", {type="flow", name="description-panel", direction="horizontal"})
+		local element = gui_or_new(description_panel, "program-description", {type = "label", name = "program-description", caption = {"", ""}, single_line = false })
+		if object.program_id and programs[object.program_id] and programs[object.program_id].description ~= nil then
+			-- programs[object.program_id].on_gui_create(object, player, panel)
+			element.parent["program-description"].caption = programs[object.program_id].description
+		end
 				
 		if object.program_id and programs[object.program_id] and programs[object.program_id].on_gui_create ~= nil then			
 			programs[object.program_id].on_gui_create(object, player, panel)
